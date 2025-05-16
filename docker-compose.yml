@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  crewai-app:
+    build: .
+    container_name: crewai-app
+    volumes:
+      - ./crewai_project:/app/crewai_project
+    working_dir: /app/crewai_project
+    command: ["python", "main.py"] 
