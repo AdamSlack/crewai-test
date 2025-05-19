@@ -71,7 +71,7 @@ user_journey_mapping_task:
     Create one Mermaid diagram per persona, each showing the typical end-to-end journey that user would follow through the system.
     Include major story-level steps and decision points relevant to the persona.
   expected_output: >
-    A structured markdown document that can be written straight to a markdown file. Don't include backticks to indicate this is markdown.
+    A structured markdown document that can be written straight to a markdown file. Don't include backticks to indicate this is markdown, unless the content is a mermaid diagram and needs to be wrapped in backticks.
     The document should contain:
     - One section per user persona
     - Each section includes:
