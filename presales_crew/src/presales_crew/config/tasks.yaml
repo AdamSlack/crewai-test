@@ -4,14 +4,15 @@ brief_interpretation_task:
     Structure your response to include the project overview, goals, users and stakeholders, known features, constraints, unknowns, risks, and recommended next steps for other agents.
     Identify any missing details or ambiguities and surface them clearly.
   expected_output: >
-    A structured YAML object containing:
-    - project_overview: title, client_goals, business_context
-    - users_and_stakeholders: end_users, internal_stakeholders
-    - known_features: a bullet list
-    - constraints_and_requirements: tech, timeline, non_functionals
-    - gaps_and_unknowns: questions or unclear areas
-    - risks_and_assumptions: inferred risks or assumptions
-    - recommended_next_steps: suggested follow-up actions and agents
+    A structured markdown document that can be written straight to a markdown file. Don't include backticks to indicate this is markdown.
+    The document should include:
+    - Project Overview: title, client goals, business context
+    - Users and Stakeholders: end users, internal stakeholders
+    - Known Features: a bullet list
+    - Constraints and Requirements: tech, timeline, non-functionals
+    - Gaps and Unknowns: questions or unclear areas
+    - Risks and Assumptions: inferred risks or assumptions
+    - Recommended Next Steps: suggested follow-up actions and agents
   agent: brief_interpreter
 
 user_persona_generation_task:
@@ -19,14 +20,14 @@ user_persona_generation_task:
     Use the client brief and the structured output from the Brief Interpreter Agent to create a set of realistic and relevant user personas.
     Each persona should include a name, role, background, goals, pain points, and behaviour patterns relevant to the project domain.
   expected_output: >
-    A YAML list of user personas.
-    Each persona should include:
-      - name: fictional but realistic
-      - role: job title or user type
-      - background: short context of who they are
-      - goals: what they want to achieve using the system
-      - frustrations: typical pain points or blockers
-      - behaviours: how they interact with digital systems
+    A structured markdown document that can be written straight to a markdown file. Don't include backticks to indicate this is markdown.
+    The document should list user personas. Each persona should include:
+      - Name: fictional but realistic
+      - Role: job title or user type
+      - Background: short context of who they are
+      - Goals: what they want to achieve using the system
+      - Frustrations: typical pain points or blockers
+      - Behaviours: how they interact with digital systems
   agent: user_persona_creator
   context:
     - brief_interpretation_task
@@ -37,10 +38,10 @@ gap_analysis_task:
     Identify any information that is missing, ambiguous, contradictory, or based on unstated assumptions.
     For each gap, write a short description and a clear, specific follow-up question to ask the client or stakeholder team.
   expected_output: >
-    A YAML list of gaps and questions.
-    Each item should include:
-      - gap: description of the missing or unclear information
-      - follow_up_question: a targeted, actionable question to help resolve the gap
+    A structured markdown document that can be written straight to a markdown file. Don't include backticks to indicate this is markdown.
+    The document should list gaps and questions. Each item should include:
+      - Gap: description of the missing or unclear information
+      - Follow-up Question: a targeted, actionable question to help resolve the gap
   agent: gap_identifier
   context:
     - brief_interpretation_task
@@ -51,12 +52,13 @@ epic_story_generation_task:
     Epics should reflect major goals or user-facing capabilities. 
     User Story titles should be specific actions or features users need, mapped back to each Epic.
   expected_output: >
-    A YAML object containing:
-    - epics: 
-        - title: a short, clear name
-          description: (optional) summary of the value or capability
-          user_stories:
-            - title: user story title only (e.g., "As a tenant, I can book an appointment")
+    A structured markdown document that can be written straight to a markdown file. Don't include backticks to indicate this is markdown.
+    The document should include:
+    - Epics: 
+        - Title: a short, clear name
+        - Description: (optional) summary of the value or capability
+        - User Stories:
+            - Title: user story title only (e.g., "As a tenant, I can book an appointment")
   agent: epic_story_generator
   context:
     - brief_interpretation_task
@@ -69,11 +71,12 @@ user_journey_mapping_task:
     Create one Mermaid diagram per persona, each showing the typical end-to-end journey that user would follow through the system.
     Include major story-level steps and decision points relevant to the persona.
   expected_output: >
-    A Markdown document containing:
+    A structured markdown document that can be written straight to a markdown file. Don't include backticks to indicate this is markdown.
+    The document should contain:
     - One section per user persona
     - Each section includes:
         - A short summary of the journey context
-        - A Mermaid flowchart (in a ```mermaid code block) using flowchart TD or LR
+        - A Mermaid flowchart using flowchart TD or LR (do not wrap in backticks)
     The journeys should be linear or branching based on story steps, using descriptive node labels and meaningful flow.
   agent: user_journey_mapper
   context:
@@ -86,11 +89,11 @@ slide_deck_generation_task:
     Take the outputs of the discovery process — including the brief interpretation, personas, and gaps — and generate a structured slide deck outline.
     The deck should explain the project context, goals, users, features, risks, and open questions in a clear, logical order.
   expected_output: >
-    A YAML list of slides.
-    Each slide should include:
-      - title: slide heading
-      - bullets: key talking points
-      - (optional) notes: speaker notes or elaboration for each slide
+    A structured markdown document that can be written straight to a markdown file. Don't include backticks to indicate this is markdown.
+    The document should list slides. Each slide should include:
+      - Title: slide heading
+      - Bullets: key talking points
+      - (Optional) Notes: speaker notes or elaboration for each slide
   agent: slide_creator
   context:
     - brief_interpretation_task
