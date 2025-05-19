@@ -6,9 +6,9 @@ services:
       - ./presales_crew:/app/presales_crew
       - ./knowledge:/app/knowledge
       - ./presales_crew/outputs:/app/presales_crew/outputs
-  presales-test:
+  presales-crew-tests:
     build: .
-    container_name: presales-test
+    container_name: presales-crew-tests
     volumes:
       - ./presales_crew:/app/presales_crew
       - ./knowledge:/app/knowledge
