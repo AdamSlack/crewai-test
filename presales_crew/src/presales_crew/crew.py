@@ -75,42 +75,48 @@ class PresalesCrew():
     def brief_interpretation_task(self) -> Task:
         return Task(
             config=self.tasks_config['brief_interpretation_task'], # type: ignore[index]
-            callback=save_output
+            callback=save_output,
+            human_input=True
         )
 
     @task
     def user_persona_generation_task(self) -> Task:
         return Task(
             config=self.tasks_config['user_persona_generation_task'], # type: ignore[index]
-            callback=save_output
+            callback=save_output,
+            human_input=True
         )
 
     @task
     def gap_analysis_task(self) -> Task:
         return Task(
             config=self.tasks_config['gap_analysis_task'], # type: ignore[index]
-            callback=save_output
+            callback=save_output,
+            human_input=True
         )
     
     @task
     def epic_story_generation_task(self) -> Task:
         return Task(
             config=self.tasks_config['epic_story_generation_task'], # type: ignore[index]
-            callback=save_output
+            callback=save_output,
+            human_input=True
         )
     
     @task
     def user_journey_mapping_task(self) -> Task:
         return Task(
             config=self.tasks_config['user_journey_mapping_task'], # type: ignore[index]
-            callback=save_output
+            callback=save_output,
+            human_input=True
         )
     
     @task
     def slide_deck_generation_task(self) -> Task:
         return Task(
             config=self.tasks_config['slide_deck_generation_task'], # type: ignore[index]
-            callback=save_output
+            callback=save_output,
+            human_input=True
         )
     
 
