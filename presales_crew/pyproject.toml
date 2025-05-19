@@ -1,0 +1,31 @@
+[project]
+name = "presales_crew"
+version = "0.1.0"
+description = "presales_crew using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.120.1,<1.0.0"
+]
+
+[project.scripts]
+presales_crew = "presales_crew.main:run"
+run_crew = "presales_crew.main:run"
+train = "presales_crew.main:train"
+replay = "presales_crew.main:replay"
+test = "presales_crew.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[project.optional-dependencies]
+dev = [
+    "pytest"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/presales_crew"]

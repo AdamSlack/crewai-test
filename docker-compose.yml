@@ -1,9 +1,19 @@
-version: '3.8'
 services:
-  crewai-app:
+  presales-app:
     build: .
-    container_name: crewai-app
+    container_name: presales-app
     volumes:
-      - ./crewai_project:/app/crewai_project
-    working_dir: /app/crewai_project
-    command: ["python", "main.py"] 
+      - ./presales_crew:/app/presales_crew
+    working_dir: /app/presales_crew/src
+    environment:
+      - PYTHONPATH=/app/presales_crew/src
+    command: ["python", "-m", "presales_crew.main"]
+  presales-test:
+    build: .
+    container_name: presales-test
+    volumes:
+      - ./presales_crew:/app/presales_crew
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/presales_crew/src
+    command: ["pytest", "presales_crew/tests"] 

@@ -1,6 +1,6 @@
 # CrewAI Python Project
 
-This project is a Python application leveraging CrewAI, containerized using Docker. All Python code resides in the `crewai_project/` directory. The application is designed to be run exclusively via Docker Compose, ensuring a consistent and isolated environment.
+This project is a Python application leveraging CrewAI, containerized using Docker. All Python code resides in the `presales_crew/` directory. The application is designed to be run exclusively via Docker Compose, ensuring a consistent and isolated environment.
 
 ## Quick Start
 
@@ -13,7 +13,7 @@ This project is a Python application leveraging CrewAI, containerized using Dock
 
 ## Project Structure
 
-- `crewai_project/` - All Python source code and modules
+- `presales_crew/` - All Python source code and modules
 - `Dockerfile` - Container build instructions
 - `docker-compose.yml` - Multi-container orchestration
 
@@ -25,3 +25,19 @@ This project is a Python application leveraging CrewAI, containerized using Dock
 ## Notes
 
 - Do not run Python locally; use Docker Compose for all development and execution.
+
+## Running Tests
+
+To run the unit tests in a containerized environment:
+
+1. Build the Docker image (if not already built):
+   ```sh
+   docker compose build
+   ```
+
+2. Run the tests using the test service:
+   ```sh
+   docker compose run --rm presales-test
+   ```
+
+This will execute all tests in the `presales_crew/tests` directory using pytest inside the container.

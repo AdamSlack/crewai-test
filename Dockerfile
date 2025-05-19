@@ -1,13 +1,13 @@
 FROM python:3.12-slim
 
-WORKDIR /app
+WORKDIR /app/presales_crew
 
-COPY crewai_project/requirements.txt ./crewai_project/requirements.txt
-RUN pip install --upgrade pip \
-    && pip install -r crewai_project/requirements.txt
+# Copy only dependency file first for better caching
+COPY presales_crew/pyproject.toml ./
 
-COPY crewai_project/ ./crewai_project/
+RUN pip install --upgrade pip && pip install .[dev]
 
-WORKDIR /app/crewai_project
+# Now copy the rest of the source code
+COPY presales_crew/ ./
 
-ENTRYPOINT ["python", "main.py"] 
+CMD ["crewai", "run"] 
