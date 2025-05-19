@@ -8,19 +8,10 @@ import os
 llm = LLM(model="gpt-4o-mini", temperature=0)
 
 
-def callback_function(output: TaskOutput):
-    # Do something after the task is completed
-    # Example: Send an email to the manager
-    print(f"""
-        Task completed!
-        Agent: {output.agent}
-        Task: {output.description}
-        Output: {output.raw}
-    """)
-
-    # save to markdown file with name of the agent in an outputs folder, create the folder if it doesn't exist
+def save_output(output: TaskOutput):
+    file_path = f"outputs/{output.agent.lower().replace(' ', '_')}.md"
     os.makedirs("outputs", exist_ok=True)
-    with open(f"outputs/{output.agent}.md", "w") as f:
+    with open(file_path, "w") as f:
         f.write(output.raw)
 
 @CrewBase
@@ -31,7 +22,7 @@ class PresalesCrew():
     tasks: List[Task]
 
     pdf_source = PDFKnowledgeSource(
-            file_paths=["Client Brief_ Performance and Progression Review Software Solution.pdf"] # Update this path to your actual PDF
+            file_paths=["../knowledge/Client Brief_ Performance and Progression Review Software Solution.pdf"] # Update this path to your actual PDF
         )
 
     @agent
@@ -74,9 +65,9 @@ class PresalesCrew():
         )
 
     @agent
-    def process_flow_diagrammer(self) -> Agent:
+    def user_journey_mapper(self) -> Agent:
         return Agent(
-            config=self.agents_config['process_flow_diagrammer'], # type: ignore[index]
+            config=self.agents_config['user_journey_mapper'], # type: ignore[index]
             verbose=True,
         )
 
@@ -84,42 +75,42 @@ class PresalesCrew():
     def brief_interpretation_task(self) -> Task:
         return Task(
             config=self.tasks_config['brief_interpretation_task'], # type: ignore[index]
-            callback=callback_function
+            callback=save_output
         )
 
     @task
     def user_persona_generation_task(self) -> Task:
         return Task(
             config=self.tasks_config['user_persona_generation_task'], # type: ignore[index]
-            callback=callback_function
+            callback=save_output
         )
 
     @task
     def gap_analysis_task(self) -> Task:
         return Task(
             config=self.tasks_config['gap_analysis_task'], # type: ignore[index]
-            callback=callback_function
+            callback=save_output
         )
     
     @task
     def epic_story_generation_task(self) -> Task:
         return Task(
             config=self.tasks_config['epic_story_generation_task'], # type: ignore[index]
-            callback=callback_function
+            callback=save_output
         )
     
     @task
-    def process_flow_generation_task(self) -> Task:
+    def user_journey_mapping_task(self) -> Task:
         return Task(
-            config=self.tasks_config['process_flow_generation_task'], # type: ignore[index]
-            callback=callback_function
+            config=self.tasks_config['user_journey_mapping_task'], # type: ignore[index]
+            callback=save_output
         )
     
     @task
     def slide_deck_generation_task(self) -> Task:
         return Task(
             config=self.tasks_config['slide_deck_generation_task'], # type: ignore[index]
-            callback=callback_function
+            callback=save_output
         )
     
 

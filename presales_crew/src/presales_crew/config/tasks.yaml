@@ -63,6 +63,24 @@ epic_story_generation_task:
     - user_persona_generation_task
     - gap_analysis_task
 
+user_journey_mapping_task:
+  description: >
+    Use the structured outputs from the Brief Interpreter, User Persona Creator, and Epic & Story Generator to document key user journeys.
+    Create one Mermaid diagram per persona, each showing the typical end-to-end journey that user would follow through the system.
+    Include major story-level steps and decision points relevant to the persona.
+  expected_output: >
+    A Markdown document containing:
+    - One section per user persona
+    - Each section includes:
+        - A short summary of the journey context
+        - A Mermaid flowchart (in a ```mermaid code block) using flowchart TD or LR
+    The journeys should be linear or branching based on story steps, using descriptive node labels and meaningful flow.
+  agent: user_journey_mapper
+  context:
+    - brief_interpretation_task
+    - user_persona_generation_task
+    - epic_story_generation_task
+
 slide_deck_generation_task:
   description: >
     Take the outputs of the discovery process — including the brief interpretation, personas, and gaps — and generate a structured slide deck outline.
@@ -78,19 +96,5 @@ slide_deck_generation_task:
     - brief_interpretation_task
     - user_persona_generation_task
     - gap_analysis_task
-
-process_flow_generation_task:
-  description: >
-    Use the structured output from the Brief Interpreter Agent, User Persona Creator, and Epic & Story Generator to create one or more Mermaid flowcharts.
-    Focus on mapping key user or system journeys as linear or decision-based flows.
-    Each diagram should be provided as Markdown-ready Mermaid code.
-  expected_output: >
-    A Markdown file containing:
-    - One or more Mermaid diagrams (using ```mermaid blocks)
-    - Each diagram should be titled and introduced with a short sentence
-    - Diagrams must use Mermaid flowchart syntax (flowchart TD/LR, nodes, decisions, arrows, etc.)
-  agent: process_flow_diagrammer
-  context:
-    - brief_interpretation_task
-    - user_persona_generation_task
     - epic_story_generation_task
+    - user_journey_mapping_task

@@ -1,19 +1,20 @@
 services:
-  presales-app:
+  presales-crew:
     build: .
-    container_name: presales-app
+    container_name: presales-crew
     volumes:
       - ./presales_crew:/app/presales_crew
-    working_dir: /app/presales_crew/src
-    environment:
-      - PYTHONPATH=/app/presales_crew/src
-    command: ["python", "-m", "presales_crew.main"]
+      - ./knowledge:/app/knowledge
+      - ./presales_crew/outputs:/app/presales_crew/outputs
   presales-test:
     build: .
     container_name: presales-test
     volumes:
       - ./presales_crew:/app/presales_crew
+      - ./knowledge:/app/knowledge
+      - ./presales_crew/outputs:/app/presales_crew/outputs
     working_dir: /app
     environment:
       - PYTHONPATH=/app/presales_crew/src
+      
     command: ["pytest", "presales_crew/tests"] 
