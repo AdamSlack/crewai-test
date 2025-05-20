@@ -22,6 +22,18 @@ This project is a Python application leveraging CrewAI, containerized using Dock
 - Docker
 - Docker Compose
 
+## Environment Variables
+
+To configure secrets and environment variables, create a `.env` file in the `presales_crew/` directory. Use the provided `.env.example` file in the same directory as a template:
+
+1. Copy `.env.example` to `.env`:
+   ```sh
+   cp presales_crew/.env.example presales_crew/.env
+   ```
+2. Open `presales_crew/.env` and add the required secrets, such as your `OPENAI_API_KEY`.
+
+**Do not commit your `.env` file to version control.**
+
 ## Notes
 
 - Do not run Python locally; use Docker Compose for all development and execution.
